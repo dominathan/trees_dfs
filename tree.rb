@@ -73,20 +73,7 @@ class Node
     end
 
 
-    # if value == self.value
-    #   return self
-    # end
 
-
-    #   self.marked = true
-    #   queue.push(self.children)
-    #   binding.pry
-    #   while !queue.empty? do
-    #     node_check = queue.shift
-    #     node_check.bfs(value)
-    #   end
-    #   return nil
-    # end
   end
 
 end
