@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rspec'
 require 'pry-debugger'
 require_relative '../tree.rb'
-
+#
 describe "Tree" do
   before(:each) do
     @house = @door = Node.new("door")

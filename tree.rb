@@ -1,9 +1,11 @@
 class Node
   attr_reader :value, :children
+  attr_accessor :marked
 
   def initialize(value)
     @value = value
     @children = []
+    @marked = false
   end
 
   def add_child(value)
@@ -18,6 +20,24 @@ class Node
     # if the child found it, return the result
     # otherwise move on to the next child
     # If no child can find it, return nil
+
+     # label value as discovered
+     #  for all edges from v to w in G.adjacentEdges(v) do
+     #      if vertex w is not labeled as discovered then
+     #       recursively call DFS(value)
+    if value == self.value
+      return self
+    else
+      self.children.each do |child|
+          new_node = child.dfs(value)
+          if new_node
+            if new_node.value == value
+              return new_node
+            end
+          end
+        end
+    end
+    return nil
   end
 
   def bfs(value, queue = [])
@@ -32,5 +52,6 @@ class Node
     # Otherwise, move on to the next node
     #
     # If the queue is empty and you haven't found it yet, return nil
+
   end
 end
