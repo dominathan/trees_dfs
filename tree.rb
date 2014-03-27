@@ -6,6 +6,7 @@ class Node
     @value = value
     @children = []
     @marked = false
+    @queue_array = []
   end
 
   def add_child(value)
@@ -40,7 +41,7 @@ class Node
     return nil
   end
 
-  def bfs(value, queue = [])
+  def bfs(value)
     # if the given value is the same as this node return self
     # Otherwise add all of this nodes children to the queue
     # of nodes needed to be searched
@@ -52,6 +53,40 @@ class Node
     # Otherwise, move on to the next node
     #
     # If the queue is empty and you haven't found it yet, return nil
+    queue = []
+    visited = []
+    if value == self.value
+      return self
+    end
+    queue.push(self)
+    visited.push(self)
+    while queue.any?
+      current_node = queue.shift
+      current_node.children.each do |child_node|
+        next if visited.include?(child_node)
+        if value == child_node.value
+          return child_node
+        end
+        queue.push(child_node)
+        visited.push(child_node)
+      end
+    end
 
+
+    # if value == self.value
+    #   return self
+    # end
+
+
+    #   self.marked = true
+    #   queue.push(self.children)
+    #   binding.pry
+    #   while !queue.empty? do
+    #     node_check = queue.shift
+    #     node_check.bfs(value)
+    #   end
+    #   return nil
+    # end
   end
+
 end
